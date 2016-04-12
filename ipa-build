@@ -1,0 +1,59 @@
+#! /bin/bash
+
+#--------------------------------------------
+# 功能：编译xcode项目并打ipa包
+# 使用说明：
+#		编译project
+#			ipa-build [-u] <project directory> [-c <project configuration>] 
+#		编译workspace
+#			ipa-build [-u] <workspace directory> -w -s <schemeName> [-c <project configuration>] 
+#
+# 参数说明：	-u 					是否上传至ftp 不写默认不上传
+#			-w					编译workspace	
+#			-s NAME				对应workspace下需要编译的scheme
+# 			-c NAME				工程的configuration,默认为Release
+#--------------------------------------------
+
+# FTP path
+FTP_PATH="/wwwroot/www_hey900_com/site/ios/iostest"
+
+# 是否上传至FTP
+should_uploadFTP=n
+
+# 处理第一个参数，是否需要上传至ftp
+if [ "$1" = "-u" ];then
+	should_uploadFTP=y
+	shift
+fi
+
+if [ $# -lt 1 ];then
+	echo "Error! Should enter the root directory of xcode project after the ipa-build command."
+	exit 2
+fi
+
+if [ ! -d $1 ];then
+	echo "Error! The first param must be a directory."
+	exit 2
+fi
+
+# 工程目录
+project_path=$1
+
+# 根据不同命令编译
+if [ -d $2 ];then
+	echo "build project directory"
+	./build $@ 
+else
+	echo "build workspace directory"
+	./build $@ 
+fi
+
+# 编译结果 为0 则编译通过，命令接续执行
+build_Result=$?
+if [[ "$build_Result" = "0" ]]; then
+	# 上传至ftp
+	if [ "$should_uploadFTP" = "y" ];then
+		echo "should_uploadFTP"
+		./upload ${project_path}/ipa_build $FTP_PATH
+	fi
+fi
