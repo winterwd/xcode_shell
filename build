@@ -219,7 +219,6 @@ else
 	if [ "$build_target" != "" ];then
 		build_cmd=${build_cmd}' -target '${build_target}
 	fi
-	
 fi
 
 
