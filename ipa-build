@@ -14,9 +14,6 @@
 # 			-c NAME				工程的configuration,默认为Release
 #--------------------------------------------
 
-# FTP path
-FTP_PATH="/wwwroot/www_hey900_com/site/ios/iostest"
-
 # 是否上传至FTP
 should_uploadFTP=n
 
@@ -54,6 +51,6 @@ if [[ "$build_Result" = "0" ]]; then
 	# 上传至ftp
 	if [ "$should_uploadFTP" = "y" ];then
 		echo "should_uploadFTP"
-		./upload ${project_path}/ipa_build $FTP_PATH
+		./upload ${project_path}/ipa_build 
 	fi
 fi

@@ -13,6 +13,7 @@
 ####注意！
 ***ipa_build 文件夹是用来上传至FTP，如果需要上传其他文件，则需要提前创建ipa_build，放入需要上传的文件***
 ***如果需要上传文件至FTP，需要提前配置FTP信息，具体查看upload代码***
+![image](https://github.com/winterWD/xcode_shell/screenshot.jpg)
 
 ####使用：  
 

@@ -4,16 +4,12 @@
 FTP_SERVER=112.74.72.68 
 USER="ios" 
 PASSWORD="xID9gdYH" 
-# FTP_PATH="/wwwroot/~/iostest" 
+FTP_PATH="/wwwroot/~/iostest" 
 # LOCAL_PATH="/Users/~/ipa_build" 
 
-if [ $# -lt 1 ];then
-	echo "Error! Should enter the FTP_PATH."
-	exit 2
-fi
 
 LOCAL_PATH=$1
-FTP_PATH=$2
+
 echo $LOCAL_PATH
 echo $FTP_PATH
 
